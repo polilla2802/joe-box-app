@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "839454157089",
+    "project_id": "joe-box-ab81f",
+    "storage_bucket": "joe-box-ab81f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839454157089:android:d35b3e83b6e8987c7b7660",
+        "android_client_info": {
+          "package_name": "com.joe.box"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "839454157089-mqraa2spqopsied3qnc9icdijla52lsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArR7dBXEFZknxN7mUPNzaL6CU2HRPXTUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "839454157089-mqraa2spqopsied3qnc9icdijla52lsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
