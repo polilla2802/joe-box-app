@@ -35,9 +35,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   firebase_auth: ^3.1.1
+  cloud_firestore: ^2.5.3
   google_sign_in: ^5.1.1
   font_awesome_flutter: ^9.1.0
   provider: ^6.0.1
+  google_fonts: ^2.1.0
   
 dev_dependencies:
   flutter_test:
@@ -50,6 +52,14 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
 
+flutter_icons:
+  # image_path: "assets/images/icon-128x128.png"
+  image_path_android: "assets/logos/joe-box-logo.png"
+  image_path_ios: "assets/logos/joe-box-logo.png"
+  android: true
+  ios: true
+  cupertino_icons: ^1.0.3
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -60,6 +70,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/logos/joe-box-logo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -77,10 +90,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Futura
+      fonts:
+        - asset: assets/fonts/futura-pt-medium.ttf
+    - family: Futura Light
+      fonts:
+        - asset: assets/fonts/futura-light-bt.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

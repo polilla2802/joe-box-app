@@ -19,10 +19,15 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(249, 202, 36, 1),
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(45, 52, 54, 1),
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: const Text("Joe Box"),
+        title: const Text(
+          "Welcome!",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Container(
         alignment: Alignment.center,
@@ -32,18 +37,25 @@ class _SignInScreenState extends State<SignInScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+              padding: const EdgeInsets.only(bottom: 64),
+              child: Image.asset(
+                "assets/logos/joe-box-logo.png",
+                width: 200,
+              ),
+            ),
+            Container(
               child: ElevatedButton.icon(
                   icon: const FaIcon(
                     FontAwesomeIcons.google,
-                    color: Colors.white,
+                    color: Color.fromRGBO(45, 52, 54, 1),
                   ),
                   onPressed: () async {
                     await _signInWithGoogle(context);
                   },
                   label: const Text("Sign In with google"),
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.purple,
-                      onPrimary: Colors.white,
+                      primary: Colors.white,
+                      onPrimary: const Color.fromRGBO(45, 52, 54, 1),
                       minimumSize: const Size(double.infinity, 50))),
             )
           ],
