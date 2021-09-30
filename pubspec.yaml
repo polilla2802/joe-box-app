@@ -33,7 +33,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.3
   firebase_auth: ^3.1.1
   cloud_firestore: ^2.5.3
   google_sign_in: ^5.1.1
@@ -44,6 +44,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -53,13 +54,12 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 flutter_icons:
-  # image_path: "assets/images/icon-128x128.png"
+  image_path: "assets/logos/joe-box-logo.png"
   image_path_android: "assets/logos/joe-box-logo.png"
   image_path_ios: "assets/logos/joe-box-logo.png"
   android: true
   ios: true
   cupertino_icons: ^1.0.3
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -91,12 +91,18 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Futura
-      fonts:
-        - asset: assets/fonts/futura-pt-medium.ttf
-    - family: Futura Light
+    - family: Futura Light Bt
       fonts:
         - asset: assets/fonts/futura-light-bt.ttf
+    - family: Futura Bt Medium
+      fonts:
+        - asset: assets/fonts/futura-md-bt-medium.ttf
+    - family: Futura Pt Medium
+      fonts:
+        - asset: assets/fonts/futura-pt-medium.ttf
+    - family: Futura Bq Medium
+      fonts:
+        - asset: assets/fonts/futurabq-medium.otf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

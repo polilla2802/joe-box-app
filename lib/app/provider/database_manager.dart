@@ -11,9 +11,10 @@ class DatabaseManager {
     try {
       box = await userList.doc(uid).get();
       caja = box!.data() as Map;
+      return caja["Box"].toString();
     } catch (e) {
       print(e.toString());
+      return "";
     }
-    return caja["Box"].toString();
   }
 }

@@ -7,7 +7,10 @@ import 'package:provider/provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (_) => Boxes(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,8 +22,28 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           title: 'Joe Box',
           theme: ThemeData(
-              fontFamily: 'Futura',
+              fontFamily: 'Futura Pt Medium',
               visualDensity: VisualDensity.adaptivePlatformDensity,
               primaryColor: const Color.fromRGBO(249, 202, 36, 1)),
           home: const SplashScreen()));
+}
+
+class Boxes extends ChangeNotifier {
+  String title = "";
+  Widget? box;
+
+  void hasBoxes() {
+    title = "Your Boxes";
+    notifyListeners();
+  }
+
+  void hasNoBoxes() {
+    title = "You don't have any boxes";
+    notifyListeners();
+  }
+
+  void yourBox(Widget newBox) {
+    box = newBox;
+    notifyListeners();
+  }
 }
