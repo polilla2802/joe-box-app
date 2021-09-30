@@ -89,7 +89,10 @@ class _LoggedInScreenState extends State<LoggedInScreen> {
             Container(
                 child: box == ""
                     ? const SizedBox()
-                    : Image.network(box, width: 200, height: 200))
+                    : Image.network(
+                        box,
+                        height: MediaQuery.of(context).size.height * .4,
+                      ))
           ],
         ),
       ),
