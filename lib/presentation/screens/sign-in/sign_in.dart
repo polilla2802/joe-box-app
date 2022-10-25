@@ -25,7 +25,7 @@ class _SignInScreenState extends State<SignInScreen> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: const Text(
-          "Welcome!",
+          "Bienvenido!",
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -52,7 +52,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   onPressed: () async {
                     await _signInWithGoogle(context);
                   },
-                  label: const Text("Sign In with google"),
+                  label: const Text("Accede con google"),
                   style: ElevatedButton.styleFrom(
                       primary: Colors.white,
                       onPrimary: const Color.fromRGBO(45, 52, 54, 1),

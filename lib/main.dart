@@ -33,12 +33,12 @@ class Boxes extends ChangeNotifier {
   Widget? box;
 
   void hasBoxes() {
-    title = "Your Boxes";
+    title = "Tus boxes";
     notifyListeners();
   }
 
   void hasNoBoxes() {
-    title = "You don't have any boxes";
+    title = "No tienes boxes";
     notifyListeners();
   }
 

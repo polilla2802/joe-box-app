@@ -4,17 +4,17 @@ class DatabaseManager {
   final CollectionReference userList =
       FirebaseFirestore.instance.collection("users");
   DocumentSnapshot? box;
-  var caja;
+  Map<dynamic, dynamic>? caja = {};
 
-  Future<String> getUserBox(String uid) async {
+  Future<Map<dynamic, dynamic>?> getUserBox(String uid) async {
     print("[getUserBoxes USER ID]: $uid");
     try {
       box = await userList.doc(uid).get();
       caja = box!.data() as Map;
-      return caja["Box"].toString();
+      return caja!;
     } catch (e) {
       print(e.toString());
-      return "";
+      return caja;
     }
   }
 }

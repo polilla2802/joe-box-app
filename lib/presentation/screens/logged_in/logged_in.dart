@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:joebox/app/provider/database_manager.dart';
 import 'package:joebox/app/provider/google_sign_in.dart';
 import 'package:joebox/main.dart';
+import 'package:joebox/presentation/components/texts/title_box.dart';
+import 'package:joebox/presentation/screens/box/box.dart';
 import 'package:provider/provider.dart';
 
 class LoggedInScreen extends StatefulWidget {
@@ -25,19 +27,16 @@ class _LoggedInScreenState extends State<LoggedInScreen> {
   }
 
   Future<void> fetchBox() async {
-    String caja;
+    Map<dynamic, dynamic>? caja;
     print("[USER ID]: ${user.uid}");
     caja = await database.getUserBox(user.uid);
     print("caja $caja");
-    if (caja.isEmpty) {
+    if (caja!.isEmpty) {
       Provider.of<Boxes>(context, listen: false).hasNoBoxes();
-      Provider.of<Boxes>(context, listen: false).yourBox(SizedBox());
+      Provider.of<Boxes>(context, listen: false).yourBox(_emptyBox());
     } else {
       Provider.of<Boxes>(context, listen: false).hasBoxes();
-      Provider.of<Boxes>(context, listen: false).yourBox(Image.network(
-        caja,
-        width: double.infinity,
-      ));
+      Provider.of<Boxes>(context, listen: false).yourBox(_boxGrid(caja));
     }
     setState(() {
       loading = false;
@@ -49,6 +48,17 @@ class _LoggedInScreenState extends State<LoggedInScreen> {
     await provider.googleLogOut();
   }
 
+  void _paintBox(String box) {
+    print("$box");
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => BoxScreen(
+                box: box,
+              )),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,20 +66,35 @@ class _LoggedInScreenState extends State<LoggedInScreen> {
         appBar: AppBar(
           backgroundColor: const Color.fromRGBO(45, 52, 54, 1),
           title: Container(
+            width: double.infinity,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                    padding: const EdgeInsets.only(right: 16),
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(user.photoURL!),
-                      radius: 15,
+                Flexible(
+                    flex: 1,
+                    child: Container(
+                      padding: const EdgeInsets.only(right: 16),
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(user.photoURL!),
+                        radius: 15,
+                      ),
                     )),
-                Container(
-                    child: Text(
-                  'Hi ' + user.displayName!,
-                  style: const TextStyle(color: Colors.white),
-                )),
+                Flexible(
+                  flex: 4,
+                  child: Container(
+                    child: FittedBox(
+                      alignment: Alignment.centerLeft,
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        user.displayName!,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -109,39 +134,51 @@ class _LoggedInScreenState extends State<LoggedInScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.only(bottom: 32),
+              padding: const EdgeInsets.only(bottom: 8),
               child: TitleBox(
                 title: Provider.of<Boxes>(context).title,
               ),
             ),
-            Container(
-              child: Provider.of<Boxes>(context).box,
+            Expanded(
+              child: Container(child: Provider.of<Boxes>(context).box),
             ),
-            Text(box)
           ],
         ),
       );
     }
   }
 
-  Widget _buildBox(BuildContext context) {
-    return SizedBox();
+  Widget _emptyBox() {
+    return const SizedBox();
   }
-}
 
-class TitleBox extends StatelessWidget {
-  final String? title;
-
-  TitleBox({this.title = ""});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      title!,
-      style: const TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.normal,
-          color: Color.fromRGBO(45, 52, 54, 1)),
+  Widget _boxGrid(Map<dynamic, dynamic> boxMap) {
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverGrid(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: 1.0,
+              mainAxisSpacing: 5.0,
+              crossAxisSpacing: 5.0),
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              return GestureDetector(
+                onTap: () => _paintBox(boxMap["Box ${index + 1}"]),
+                child: Container(
+                  child: Column(
+                    children: [
+                      Image.asset("assets/logos/cube.png"),
+                      Text("cube ${index + 1}")
+                    ],
+                  ),
+                ),
+              );
+            },
+            childCount: boxMap.length,
+          ),
+        ),
+      ],
     );
   }
 }
